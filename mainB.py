@@ -1,10 +1,11 @@
+from env import email, password
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import json
-from env import email, password
+
 
 wait_between_actions = 2
 driver = webdriver.Chrome()
