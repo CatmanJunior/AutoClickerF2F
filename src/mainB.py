@@ -4,13 +4,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import json
+from env import email, password
 
 wait_between_actions = 2
 driver = webdriver.Chrome()
 
 # Replace credentials with secure inputs or environment variables in production
-email = "amber.gold.s11@gmail.com"
-password = "f2f2023f2f!"
+
 id_last_post = ""
 
 # Helper function for waiting
@@ -106,7 +106,7 @@ def scroll_down_in_steps(total_scroll, step_size=1000, delay=1):
 # Get first post on explore
 def get_first_post_on_explore():
     driver.get("https://f2f.com/explore/")
-    wait_for_loading_page(wait_between_actions)
+    wait_for_loading_page(4)
     first_post = driver.find_elements(By.CLASS_NAME, "FqVJUq_post")[0].find_element(By.TAG_NAME, "a")
     id_post = first_post.get_attribute("href").split("start=")[1]
 
@@ -186,11 +186,11 @@ def look_for_post_on_explore(last_id):
 
     # Log creator information and post IDs
     for creator in creator_list:
-        log_position_to_file(creator[0], time.time(), creator[1])
+        log_position_to_file(creator[0], creator[1])
         log_creator(creator[0], creator[1])
         
     for new_post in new_post_list:
-        log_position_to_file(new_post[0], time.time(), new_post[1])
+        log_position_to_file(new_post[0], new_post[1])
 
     # Save the updated creator list to the JSON file
     save_creators_to_json_file()
